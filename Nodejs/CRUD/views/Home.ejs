@@ -1,0 +1,13 @@
+<%- include("includes/Head.ejs") %>
+<body>
+    <div>
+    <% posts.map((x)=>{%>
+<div class="Post_list">
+    <h2><%=x.id%>. <strong><%=x.username%></strong></h2>
+    <p><%=x.contant%></p>
+</div>
+   <% })%>
+
+</div>
+
+</body>

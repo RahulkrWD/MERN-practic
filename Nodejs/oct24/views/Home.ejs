@@ -1,0 +1,17 @@
+
+<%- include("includes/Head.ejs") %>
+
+<div>
+    <h3>User List</h3>
+    <% if (findUser && findUser.length > 0) {%>
+    <% findUser.map((user) => { %>
+    <h3>Name: <%= user.name %></h3>
+    <h5>Price: <%= user.price %></h5>
+    <p>Contact: <%= user.contant %></p>
+    <button class="btn">Edit</button>
+    <hr>
+    <% }) %>
+    <% } else { %>
+    <p>No users found</p>
+    <% } %>
+</div>

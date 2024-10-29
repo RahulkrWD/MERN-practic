@@ -1,0 +1,26 @@
+<%- include("includes/head.ejs")%>
+<body>
+    <%- include("includes/NavBar.ejs")%>
+    <h2>Instagram @<%=data.name%></h2>
+    <h1>followers <%=data.followers%></h1>
+
+   
+    <h1>following <%=data.following%></h1>
+
+    <hr>
+    <div class="post_container">
+
+   
+    <% data.posts.map((item)=>{%>
+        <div>
+            <img class="post" src=<%=item.image%> alt="">
+            <p>Likes: <b><%=item.likes%></b></p>
+            <p>Comments: <b><%=item.comments%></b></p>
+        </div>
+            
+       
+  <%  })%>
+   
+</div>
+<%-include("includes/Footer.ejs")%>
+</body>

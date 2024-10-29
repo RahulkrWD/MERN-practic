@@ -1,0 +1,13 @@
+.btn{
+    background-color: blueviolet;
+   color: white;
+   border: none;
+   padding: 7px 15px; 
+   border-radius: 6px;
+   font-size: 17px;
+   font-weight: 600;
+   cursor: pointer;
+}
+.btn:hover{
+    background-color: darkmagenta;
+}
