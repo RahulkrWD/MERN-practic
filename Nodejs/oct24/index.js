@@ -1,14 +1,19 @@
 const express = require("express");
 const db = require("./db");
 const userModel = require("./userModel");
+const methodOverride = require("method-override");
 // Initialize Database
 db();
 const app = express();
 app.use(express.json());
 const PORT = 5500;
 // Set view engine to EJS
-app.set("view engine", "ejs");
-app.use(express.static('public'));
+app.use(express.static("public"));
+app.set("views engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
+
+app.use(methodOverride("_method"));
+
 // post and create a user
 app.post("/user", async (req, res)=>{
     try{
@@ -17,7 +22,7 @@ app.post("/user", async (req, res)=>{
             return res.status(400).send("All fields (name, price, and contant) are required.");
         }
         const find = await userModel.create({ name, price, contant})
-        res.send(find)
+        res.redirect("/");
     }catch(err){
         res.send("Post Not created")
     }
@@ -43,7 +48,7 @@ app.get("/user/:id", async (req, res)=>{
             query = {_id: id}
         }
         const getUser = await userModel.find(query);
-        res.send(getUser)
+        res.render("Edit.ejs",{getUser})
     }catch(err){
         res.send("User Not found")
     }
@@ -54,7 +59,7 @@ app.get("/user/:id", async (req, res)=>{
 app.delete("/user/:id", async (req, res)=>{
     const id = req.params.id;
     const dltUser = await userModel.deleteOne({_id: id});
-    res.send(dltUser)
+    res.redirect("/");
 })
 
 // update or modify individual user using id
@@ -64,18 +69,25 @@ app.put("/user/:id", async (req, res) => {
         const { price, name , contant} = req.body; 
         const updateUser = await userModel.findOneAndUpdate(
             { _id: id },          
-            { price: price, name: name, contant: contant }, 
+            { price, name, contant }, 
             { new: true } 
                     
         );
-        res.send(updateUser);
+        res.redirect("/");
     } catch (error) {
         res.send({ error: "Error updating user", details: error.message });
     }
 });
 
 // user get in post man
-app.get("/user")
+app.get("/user", async (req, res)=>{
+    const find = await userModel.find();
+    res.send(find);
+})
+
+app.get("/new-user", (req, res) => {
+    res.render("New_user.ejs");
+});
 
 app.listen(PORT, ()=>{
     console.log(`server is running on PORT ${PORT}`)

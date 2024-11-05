@@ -1,0 +1,36 @@
+<%- include("includes/Head.ejs") %>
+
+<div class="container">
+    <h4 class="text-center">Edit User Details</h4>
+    <hr>
+    <div class="contant_container">
+        <% getUser.map((user) => { %>
+        <!-- This from for updated the user details and method is PUT then -->
+        <form action="/user/<%= user._id %>?_method=PUT" method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="name" name="name"
+                    placeholder="Enter user name" required
+                    value="<%= user.name %>">
+            </div>
+
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="text" class="form-control" id="price" name="price"
+                    placeholder="Enter price" required
+                    value="<%= user.price %>">
+            </div>
+
+            <div class="mb-3">
+                <label for="contant" class="form-label">Contant</label>
+                <input type="text" class="form-control" id="contant"
+                    name="contant"
+                    placeholder="Enter contant" required
+                    value="<%= user.contant %>">
+            </div>
+
+            <button type="submit" class="btn btn-success">Save Details</button>
+        </form>
+        <% }) %>
+    </div>
+</div>

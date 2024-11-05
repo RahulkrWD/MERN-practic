@@ -1,0 +1,32 @@
+
+<%- include("includes/Head.ejs") %>
+
+<div class="container mt-5">
+    <h2 class="text-center">Add New User</h2>
+    <hr>
+    <div class="contant_container">
+        <form action="/user" method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="name" name="name"
+                    placeholder="Enter user name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="text" class="form-control" id="price" name="price"
+                    placeholder="Enter price" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="contant" class="form-label">Contant</label>
+                <input type="text" class="form-control" id="contant"
+                    name="contant"
+                    placeholder="Enter contant" required>
+            </div>
+
+            <button type="submit" class="btn btn-success">Add User</button>
+            <a href="/" class="btn btn-secondary">Back</a>
+        </form>
+    </div>
+</div>

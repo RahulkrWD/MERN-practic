@@ -1,17 +1,29 @@
 
 <%- include("includes/Head.ejs") %>
 
-<div>
-    <h3>User List</h3>
-    <% if (findUser && findUser.length > 0) {%>
+<div class="container">
+    <h4 class="text-center p-2">User List</h4>
+    <hr />
+    <% if (findUser && findUser.length> 0) {%>
     <% findUser.map((user) => { %>
-    <h3>Name: <%= user.name %></h3>
-    <h5>Price: <%= user.price %></h5>
-    <p>Contact: <%= user.contant %></p>
-    <button class="btn">Edit</button>
+    <div class="contant_container">
+
+        <h3>Name: <%= user.name %></h3>
+        <h5>Price: <%= user.price %></h5>
+        <p>Contact: <%= user.contant %></p>
+        <a href="/user/<%=user._id%>"
+            class="btn text-bg-success fw-bold">Edit</a>
+        <form class="d-inline"
+            action="/user/<%= user._id %>?_method=DELETE"
+            method="POST">
+            <button class="btn text-bg-warning fw-bold"
+                type="submit">Delete</button>
+        </form>
+
+    </div>
     <hr>
     <% }) %>
     <% } else { %>
-    <p>No users found</p>
+    <p class="text-center fw-bold fs-3">No users found</p>
     <% } %>
 </div>
