@@ -21,7 +21,7 @@ app.post("/user", async (req, res)=>{
         if (!name || !price || !contant) {
             return res.status(400).send("All fields (name, price, and contant) are required.");
         }
-        const find = await userModel.create({ name, price, contant})
+        await userModel.create({ name, price, contant})
         res.redirect("/");
     }catch(err){
         res.send("Post Not created")
@@ -58,7 +58,7 @@ app.get("/user/:id", async (req, res)=>{
 // delete individual user using id
 app.delete("/user/:id", async (req, res)=>{
     const id = req.params.id;
-    const dltUser = await userModel.deleteOne({_id: id});
+    await userModel.deleteOne({_id: id});
     res.redirect("/");
 })
 
@@ -67,7 +67,7 @@ app.put("/user/:id", async (req, res) => {
     try {
         const id = req.params.id;
         const { price, name , contant} = req.body; 
-        const updateUser = await userModel.findOneAndUpdate(
+        await userModel.findOneAndUpdate(
             { _id: id },          
             { price, name, contant }, 
             { new: true } 

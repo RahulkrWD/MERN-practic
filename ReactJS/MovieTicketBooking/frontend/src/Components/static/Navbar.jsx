@@ -9,7 +9,7 @@ function Navbar(){
         </div>
         <div>
         <h5>Location</h5>
-       <button  className="btn text-bg-danger">Signup</button>
+       <button  className="btn text-bg-danger">Sign In</button>
        <h5>lcons</h5>
 
         </div>
